@@ -267,7 +267,7 @@ class OAuth2TestsMixin(object):
         user.set_password("test")
         user.save()
         EmailAddress.objects.create(user=user, email=email, primary=True, verified=True)
-        self.client.login(username=user.username, password="test")
+        self.client.login(username=user.get_username(), password="test")
         self.login(self.get_mocked_response(), process="connect")
         if multiple_login:
             self.login(
